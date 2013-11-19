@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="leaderboard">
+    <head>
+        <title>AngularJS Leader Board</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="css/leaderboard.css"/>
+    </head>
+    <body ng-controller="MainCtrl">
+        <div class="container">
+            <h1>{{eventName}}</h1>
+            <h2>{{roundName}}</h2>
+
+            <select class="form-control" ng-model="currentContestant"
+                    ng-options="contestant.name for (key, contestant) in contestants">
+                <option value="">Choose an Athlete</option>
+            </select>
+
+            <div class="well remote" ng-hide="!currentContestant">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Lane</th>
+                        <th>Contestant</th>
+                        <th>Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{currentContestant.lane}}</td>
+                        <td>{{currentContestant.name}}</td>
+                        <td>{{currentContestant.score}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="incrementScore()">Add One</button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="decrementScore()">Minus One</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="libs/jquery.min.js"></script>
+        <script src="libs/bootstrap.min.js"></script>
+        <script src="libs/sugar.custom.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/0.5.0-rc1/angularfire.js"></script>
+
+        <script src="js/leader-board.js"></script>
+    </body>
+</html>
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="leaderboard">
+    <head>
+        <title>AngularJS Leader Board</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="css/leaderboard.css"/>
+    </head>
+    <body ng-controller="MainCtrl">
+        <div class="edit">
+            <input class="large" type="text" ng-model="eventName"/>
+            <input class="medium" type="text" ng-model="roundName"/>
+        </div>
+
+        <table class="table edit">
+            <thead>
+            <tr>
+                <th>Lane</th>
+                <th>Contestant</th>
+                <th>Score</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(id, contestant) in contestants">
+                <td><input type="text" ng-model="contestant.lane" ng-blur="updateContestant(id)"/></td>
+                <td><input type="text" ng-model="contestant.name" ng-blur="updateContestant(id)"/></td>
+                <td><input type="text" ng-model="contestant.score" ng-blur="updateContestant(id)"/></td>
+                <td>
+                    <a href="#" ng-click="removeContestant(id)" class="navbar-link">Remove</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="well">
+            <h4>Add Contestant</h4>
+            <form class="form-inline" role="form" novalidate ng-submit="addContestant()">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newContestant.lane" placeholder="Enter lane">
+                </div>
+                 <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newContestant.name" placeholder="Content Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newContestant.score" placeholder="Contestant Score">
+                </div>
+                <button type="submit" class="btn btn-default">Add</button>
+            </form>
+        </div>
+
+        <script src="libs/jquery.min.js"></script>
+        <script src="libs/bootstrap.min.js"></script>
+        <script src="libs/sugar.custom.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/0.5.0-rc1/angularfire.js"></script>
+
+        <script src="js/leader-board.js"></script>
+    </body>
+</html>

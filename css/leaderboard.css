@@ -1,0 +1,44 @@
+.remote {
+    margin: 10px;
+    padding: 10px;
+}
+
+.remote .row {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.edit input[type=text] {
+    border: 1px solid #ffffff;
+    width: 100%;
+    resize: none;
+    background-color: #ffffff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.edit input[type=text]:hover,
+.edit input[type=text]:focus {
+    border: 1px solid #d7cebf;
+    outline: none
+}
+
+.xlarge {
+    font-size: 36px;
+    font-weight: bold;
+    color: inherit;
+}
+
+.large {
+    font-size: 30px;
+    font-weight: bold;
+    color: inherit;
+}
+
+.medium {
+    font-size: 24px;
+    font-weight: bold;
+    color: inherit;
+}
