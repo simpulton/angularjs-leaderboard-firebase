@@ -1,58 +1,47 @@
 var app = angular.module('leaderboard', ['firebase']);
 
 app.controller('MainCtrl', ['$scope', 'ContestantsService', '$firebase', function ($scope, ContestantsService, $firebase) {
-
-    $scope.newContestant = { lane: '', name: '', score: '' };
-    $scope.currentContestant = null;
-
-    // Implicit
-    var eventRef = new Firebase('https://ng-leaderboard.firebaseio.com/event/');
-    $firebase(eventRef).$bind($scope, 'eventName');
-
-    var roundRef = new Firebase('https://ng-leaderboard.firebaseio.com/round/');
-    $firebase(roundRef).$bind($scope, 'roundName');
-
-    $scope.eventName = 'Crossfit Games 2014';
-    $scope.roundName = 'Fight Gone Bad';
+    var main = this;
+    main.newContestant = { lane: '', name: '', score: '' };
+    main.currentContestant = null;
 
     // Explicit
-    $scope.contestants = ContestantsService.getContestants();
+    main.contestants = ContestantsService.getContestants();
 
-    $scope.addContestant = function () {
-        ContestantsService.addContestant(angular.copy($scope.newContestant));
-        $scope.newContestant = { lane: '', name: '', score: '' };
+    main.addContestant = function () {
+        ContestantsService.addContestant(angular.copy(main.newContestant));
+        main.newContestant = { lane: '', name: '', score: '' };
     };
 
-    $scope.updateContestant = function (contestant) {
+    main.updateContestant = function (contestant) {
         ContestantsService.updateContestant(contestant);
     };
 
-    $scope.removeContestant = function (contestant) {
+    main.removeContestant = function (contestant) {
         ContestantsService.removeContestant(contestant);
     };
 
-    $scope.incrementScore = function () {
-        $scope.currentContestant.score = parseInt($scope.currentContestant.score, 10) + 1;
-        $scope.updateContestant($scope.currentContestant);
+    main.incrementScore = function () {
+        main.currentContestant.score = parseInt(main.currentContestant.score, 10) + 1;
+        main.updateContestant(main.currentContestant);
     };
 
-    $scope.decrementScore = function () {
-        $scope.currentContestant.score = parseInt($scope.currentContestant.score, 10) - 1;
-        $scope.updateContestant($scope.currentContestant);
+    main.decrementScore = function () {
+        main.currentContestant.score = parseInt(main.currentContestant.score, 10) - 1;
+        main.updateContestant(main.currentContestant);
     };
 }]);
 
 app.factory('ContestantsService', ['$firebase', function ($firebase) {
     var ref = new Firebase('https://ng-leaderboard.firebaseio.com/contestants/');
-    var contestants = $firebase(ref);
+    var contestants = $firebase(ref).$asArray();
 
-    contestants.$on('loaded', function(){
-        // console.log('contestants', contestants);
-    })
-
+    ref.on('value', function(){
+        console.log('contestants', contestants);
+    });
     var getContestants = function() {
         return contestants;
-    }
+    };
 
     var addContestant = function (contestant) {
         contestants.$add(contestant);
