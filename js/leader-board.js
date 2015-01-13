@@ -1,11 +1,12 @@
 var app = angular.module('leaderboard', ['firebase']);
 
-app.controller('MainCtrl', ['$scope', 'ContestantsService', '$firebase', function ($scope, ContestantsService, $firebase) {
+app.constant('FIREBASE_URI', 'https://ng-leaderboard.firebaseio.com/contestants/');
+
+app.controller('MainCtrl', function (ContestantsService) {
     var main = this;
     main.newContestant = { lane: '', name: '', score: '' };
     main.currentContestant = null;
 
-    // Explicit
     main.contestants = ContestantsService.getContestants();
 
     main.addContestant = function () {
@@ -30,15 +31,12 @@ app.controller('MainCtrl', ['$scope', 'ContestantsService', '$firebase', functio
         main.currentContestant.score = parseInt(main.currentContestant.score, 10) - 1;
         main.updateContestant(main.currentContestant);
     };
-}]);
+});
 
-app.factory('ContestantsService', ['$firebase', function ($firebase) {
-    var ref = new Firebase('https://ng-leaderboard.firebaseio.com/contestants/');
+app.factory('ContestantsService', function ($firebase, FIREBASE_URI) {
+    var ref = new Firebase(FIREBASE_URI);
     var contestants = $firebase(ref).$asArray();
 
-    ref.on('value', function(){
-        console.log('contestants', contestants);
-    });
     var getContestants = function() {
         return contestants;
     };
@@ -61,4 +59,4 @@ app.factory('ContestantsService', ['$firebase', function ($firebase) {
         updateContestant: updateContestant,
         removeContestant: removeContestant
     }
-}]);
+});
