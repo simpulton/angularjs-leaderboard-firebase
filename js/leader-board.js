@@ -5,29 +5,6 @@ app.controller('MainCtrl', ['$scope', 'ContestantsService', '$firebase', functio
     main.newContestant = { lane: '', name: '', score: '' };
     main.currentContestant = null;
 
-    var defaultEvent = {name: 'Crossfit Games 2015'};
-    var defaultRound = {name: 'Fight Gone Bad'};
-
-    // Implicit
-    var eventRef = new Firebase('https://ng-leaderboard.firebaseio.com/event/');
-    var event = $firebase(eventRef).$asObject();
-    eventRef.once('value', function(snapshot) {
-        if (!snapshot.val() || snapshot.val().name.length == 0) {
-            eventRef.update(defaultEvent);
-        }
-    });
-    event.$bindTo($scope, 'event');
-
-    var roundRef = new Firebase('https://ng-leaderboard.firebaseio.com/round/');
-    var round = $firebase(roundRef).$asObject();
-    roundRef.once('value', function(snapshot) {
-        if (!snapshot.val() || snapshot.val().name.length == 0) {
-            roundRef.update(defaultRound);
-        }
-    });
-    round.$bindTo($scope, 'round');
-
-
     // Explicit
     main.contestants = ContestantsService.getContestants();
 

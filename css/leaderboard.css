@@ -42,3 +42,6 @@
     font-weight: bold;
     color: inherit;
 }
+select {
+    margin-top: 20px;
+}
