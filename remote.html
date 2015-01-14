@@ -10,7 +10,7 @@
     <body ng-controller="MainCtrl as main">
         <div class="container">
             <select class="form-control" ng-model="main.currentContestant"
-                    ng-options="contestant.name for (key, contestant) in main.contestants">
+                    ng-options="contestant.name for (id, contestant) in main.contestants">
                 <option value="">Choose an Athlete</option>
             </select>
 
@@ -50,7 +50,7 @@
         <script src="//cdn.firebase.com/js/client/2.1.0/firebase.js"></script>
         <script src="//cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
 
-        <script src="js/leader-board.js"></script>
+        <script src="js/leader-board-static.js"></script>
     </body>
 </html>
 
