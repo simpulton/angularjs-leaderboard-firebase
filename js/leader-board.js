@@ -4,14 +4,14 @@ app.constant('FIREBASE_URI', 'PUT_YOUR_FIREBASE_HERE');
 
 app.controller('MainCtrl', function (ContestantsService) {
     var main = this;
-    main.newContestant = { lane: '', name: '', score: '' };
+    main.newContestant = {lane: '', name: '', score: ''};
     main.currentContestant = null;
 
     main.contestants = ContestantsService.getContestants();
 
     main.addContestant = function () {
         ContestantsService.addContestant(angular.copy(main.newContestant));
-        main.newContestant = { lane: '', name: '', score: '' };
+        main.newContestant = {lane: '', name: '', score: ''};
     };
 
     main.updateContestant = function (contestant) {
@@ -37,7 +37,7 @@ app.factory('ContestantsService', function ($firebase, FIREBASE_URI) {
     var ref = new Firebase(FIREBASE_URI);
     var contestants = $firebase(ref).$asArray();
 
-    var getContestants = function() {
+    var getContestants = function () {
         return contestants;
     };
 
@@ -45,12 +45,12 @@ app.factory('ContestantsService', function ($firebase, FIREBASE_URI) {
         contestants.$add(contestant);
     };
 
-    var updateContestant = function (id) {
-        contestants.$save(id);
+    var updateContestant = function (contestant) {
+        contestants.$save(contestant);
     };
 
-    var removeContestant = function (id) {
-        contestants.$remove(id);
+    var removeContestant = function (contestant) {
+        contestants.$remove(contestant);
     };
 
     return {

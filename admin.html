@@ -19,11 +19,11 @@
             </thead>
             <tbody>
             <tr ng-repeat="(id, contestant) in main.contestants">
-                <td><input type="text" ng-model="contestant.lane" ng-blur="main.updateContestant(id)"/></td>
-                <td><input type="text" ng-model="contestant.name" ng-blur="main.updateContestant(id)"/></td>
-                <td><input type="text" ng-model="contestant.score" ng-blur="main.updateContestant(id)"/></td>
+                <td><input type="text" ng-model="contestant.lane" ng-blur="main.updateContestant(contestant)"/></td>
+                <td><input type="text" ng-model="contestant.name" ng-blur="main.updateContestant(contestant)"/></td>
+                <td><input type="text" ng-model="contestant.score" ng-blur="main.updateContestant(contestant)"/></td>
                 <td>
-                    <a href="#" ng-click="main.removeContestant(id)" class="navbar-link">Remove</a>
+                    <button type="button" class="btn btn-link" ng-click="main.removeContestant(contestant)">Remove</button>
                 </td>
             </tr>
             </tbody>
@@ -54,6 +54,6 @@
         <script src="//cdn.firebase.com/js/client/2.1.0/firebase.js"></script>
         <script src="//cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
 
-        <script src="js/leader-board-static.js"></script>
+        <script src="js/leader-board.js"></script>
     </body>
 </html>
