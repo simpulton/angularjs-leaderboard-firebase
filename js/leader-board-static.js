@@ -53,7 +53,7 @@ app.service('ContestantsService', function () {
 
     service.removeContestant = function (contestant) {
         contestants.remove(function(c) {
-            return c['id'] == contestant.id;
+            return c.id === contestant.id;
         });
     };
 });
