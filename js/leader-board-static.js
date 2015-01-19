@@ -30,35 +30,30 @@ app.controller('MainCtrl', function (ContestantsService) {
     };
 });
 
-app.factory('ContestantsService', function () {
-    var contestants = {
-        1: {id: 1, lane: 1, name: 'Contestant 01', score: '10'},
-        2: {id: 2, lane: 2, name: 'Contestant 02', score: '15'},
-        3: {id: 3, lane: 3, name: 'Contestant 03', score: '20'}
-    };
+app.service('ContestantsService', function () {
+    var service = this;
+    var contestants = [
+        {id: 1, lane: 1, name: 'Contestant 01', score: '10'},
+        {id: 2, lane: 2, name: 'Contestant 02', score: '15'},
+        {id: 3, lane: 3, name: 'Contestant 03', score: '20'}
+    ];
 
-    var getContestants = function () {
+    service.getContestants = function () {
         return contestants;
     };
 
-    var addContestant = function (contestant) {
-        var id = new Date().getTime();
-        contestant.id = id;
-        contestants[id] = contestant;
+    service.addContestant = function (contestant) {
+        contestant.id = new Date().getTime();
+        contestants.push(contestant);
     };
 
-    var updateContestant = function (contestant) {
+    service.updateContestant = function (contestant) {
         // Already in memory
     };
 
-    var removeContestant = function (contestant) {
-        delete contestants[contestant.id];
+    service.removeContestant = function (contestant) {
+        contestants.remove(function(c) {
+            return c['id'] == contestant.id;
+        });
     };
-
-    return {
-        getContestants: getContestants,
-        addContestant: addContestant,
-        updateContestant: updateContestant,
-        removeContestant: removeContestant
-    }
 });

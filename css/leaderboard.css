@@ -1,3 +1,7 @@
+.container {
+    margin-top: 50px;
+}
+
 .remote {
     margin: 10px;
     padding: 10px;
@@ -7,6 +11,10 @@
     margin-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.remote select {
+    margin-top: 20px;
 }
 
 .edit input[type=text] {
@@ -42,6 +50,4 @@
     font-weight: bold;
     color: inherit;
 }
-select {
-    margin-top: 20px;
-}
+

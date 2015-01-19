@@ -32,30 +32,24 @@ app.controller('MainCtrl', function (ContestantsService) {
     };
 });
 
-app.factory('ContestantsService', function ($firebase, FIREBASE_URI) {
+app.service('ContestantsService', function ($firebase, FIREBASE_URI) {
+    var service = this;
     var ref = new Firebase(FIREBASE_URI);
     var contestants = $firebase(ref).$asArray();
 
-    var getContestants = function () {
+    service.getContestants = function () {
         return contestants;
     };
 
-    var addContestant = function (contestant) {
+    service.addContestant = function (contestant) {
         contestants.$add(contestant);
     };
 
-    var updateContestant = function (contestant) {
+    service.updateContestant = function (contestant) {
         contestants.$save(contestant);
     };
 
-    var removeContestant = function (contestant) {
+    service.removeContestant = function (contestant) {
         contestants.$remove(contestant);
     };
-
-    return {
-        getContestants: getContestants,
-        addContestant: addContestant,
-        updateContestant: updateContestant,
-        removeContestant: removeContestant
-    }
 });

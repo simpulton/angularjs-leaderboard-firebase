@@ -7,10 +7,10 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="css/leaderboard.css"/>
     </head>
-    <body ng-controller="MainCtrl as main">
-        <div class="container">
+    <body>
+        <div class="container" ng-controller="MainCtrl as main">
             <select class="form-control" ng-model="main.currentContestant"
-                    ng-options="contestant.name for (id, contestant) in main.contestants">
+                    ng-options="contestant.name for contestant in main.contestants">
                 <option value="">Choose an Athlete</option>
             </select>
 

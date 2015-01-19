@@ -7,44 +7,49 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="css/leaderboard.css"/>
     </head>
-    <body ng-controller="MainCtrl as main">
-        <table class="table edit">
-            <thead>
-            <tr>
-                <th>Lane</th>
-                <th>Contestant</th>
-                <th>Score</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="(id, contestant) in main.contestants">
-                <td><input type="text" ng-model="contestant.lane" ng-blur="main.updateContestant(contestant)"/></td>
-                <td><input type="text" ng-model="contestant.name" ng-blur="main.updateContestant(contestant)"/></td>
-                <td><input type="text" ng-model="contestant.score" ng-blur="main.updateContestant(contestant)"/></td>
-                <td>
-                    <button type="button" class="btn btn-link" ng-click="main.removeContestant(contestant)">Remove</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <body>
+        <div class="container" ng-controller="MainCtrl as main">
+            <h3>Race to Awesome</h3>
 
-        <div class="well">
-            <h4>Add Contestant</h4>
+            <table class="table edit">
+                <thead>
+                <tr>
+                    <th>Lane</th>
+                    <th>Contestant</th>
+                    <th>Score</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="contestant in main.contestants">
+                    <td><input type="text" ng-model="contestant.lane" ng-blur="main.updateContestant(contestant)"/></td>
+                    <td><input type="text" ng-model="contestant.name" ng-blur="main.updateContestant(contestant)"/></td>
+                    <td><input type="text" ng-model="contestant.score" ng-blur="main.updateContestant(contestant)"/></td>
+                    <td>
+                        <button type="button" class="btn btn-link" ng-click="main.removeContestant(contestant)">Remove</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-            <form class="form-inline" role="form" novalidate ng-submit="main.addContestant()">
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="main.newContestant.lane" placeholder="Enter lane">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="main.newContestant.name" placeholder="Contestant Name">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="main.newContestant.score" placeholder="Contestant Score">
-                </div>
-                <button type="submit" class="btn btn-default">Add</button>
-            </form>
+            <div class="well">
+                <h4>Add Contestant</h4>
+
+                <form class="form-inline" role="form" novalidate ng-submit="main.addContestant()">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="main.newContestant.lane" placeholder="Enter lane">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="main.newContestant.name" placeholder="Contestant Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="main.newContestant.score" placeholder="Contestant Score">
+                    </div>
+                    <button type="submit" class="btn btn-default">Add</button>
+                </form>
+            </div>
         </div>
+
 
         <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
