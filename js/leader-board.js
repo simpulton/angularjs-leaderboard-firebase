@@ -6,7 +6,6 @@ app.controller('MainCtrl', function (ContestantsService) {
     var main = this;
     main.newContestant = {lane: '', name: '', score: ''};
     main.currentContestant = null;
-
     main.contestants = ContestantsService.getContestants();
 
     main.addContestant = function () {
