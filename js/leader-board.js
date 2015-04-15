@@ -32,10 +32,10 @@ app.controller('MainCtrl', function (ContestantsService) {
     };
 });
 
-app.service('ContestantsService', function ($firebase, FIREBASE_URI) {
+app.service('ContestantsService', function ($firebaseArray, FIREBASE_URI) {
     var service = this;
     var ref = new Firebase(FIREBASE_URI);
-    var contestants = $firebase(ref).$asArray();
+    var contestants = $firebaseArray(ref);
 
     service.getContestants = function () {
         return contestants;
