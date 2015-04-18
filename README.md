@@ -13,7 +13,7 @@ Getting Started
 ---------------
 First, make sure you have Git and Node.js installed (see "Prerequisites"). Then open your terminal/command prompt and run the following commands:
 ```
-git clone git@github.com:simpulton/angularjs-leaderboard-firebase.git
+git clone https://github.com/simpulton/angularjs-leaderboard-firebase.git
 cd angularjs-leaderboard-firebase
 ```
 Now open up the code in your favorite text editor.
